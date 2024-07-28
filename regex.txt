@@ -1,0 +1,4 @@
+repeat : < forwhile>
+func : <def>
+verd: <mkboolian>
+

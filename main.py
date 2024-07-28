@@ -1,5 +1,25 @@
 import re_to_dfa as rd
 
+
+def read_dict_from_file(file_path):
+    my_dict = {}
+    with open(file_path, "r") as file:
+        for line in file:
+            # Remove leading and trailing whitespace characters
+            line = line.strip()
+            if line:
+                # Split the line into key and value
+                key, value = line.split(":", 1)
+                my_dict[key.strip()] = value.strip()
+    return my_dict, list(my_dict.keys())
+
+
+file_path = input("Enter the file path: ")
+try:
+    regex_dict, regex_list = read_dict_from_file(file_path)
+except:
+    print("the file path is not correct!? pleas enter it again")
+    exit()
 # Define the list of tokens and their respective regex patterns
 list__ = [
     "repeat",
@@ -29,10 +49,10 @@ dict_tk = {
     "rango": "<range_num>",
     "caden": "<mkstr>",
 }
-dict_ = {}
+dict_dtrans = {}
 
 # Process each pattern to create DFA transition tables
-for i in list__:
+for i in regex_list:
     temp = ""
     if "." not in i:
         for j in i:
@@ -40,11 +60,11 @@ for i in list__:
         temp = temp[:-1]
     else:
         temp = i
-    dict_[i] = rd.make_dfa(rd.make_dtrans_table(temp)[0])
+    dict_dtrans[i] = rd.make_dfa(rd.make_dtrans_table(temp)[0])
 
 # Generate Python functions for each DFA
 with open("generated_dfa_functions.py", "w") as fh:
-    for name, a in list(dict_.items()):
+    for name, a in list(dict_dtrans.items()):
         a = a.split("\n")
         a = [i.split() for i in a]
         aa = []
@@ -108,7 +128,7 @@ with open("generated_dfa_functions.py", "w") as fh:
             else:
                 if "F" in i[0]:
                     fh.write(f"                elif ch == '\\n':\n")
-                    fh.write(f"                    return True, '{dict_tk[name]}'\n")
+                    fh.write(f"                    return True, '{regex_dict[name]}'\n")
                     fh.write("                    j += 1\n")
                 fh.write("                else:\n")
                 fh.write(f"                    state = {T}\n")
