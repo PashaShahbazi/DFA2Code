@@ -21,34 +21,35 @@ except:
     print("the file path is not correct!? pleas enter it again")
     exit()
 # Define the list of tokens and their respective regex patterns
-list__ = [
-    "repeat",
-    "func",
-    "verd",
-    "se",
-    "alse",
-    "al",
-    "en",
-    "bro",
-    "ritorno",
-    "ilg",
-    "rango",
-    "caden",
-]
-dict_tk = {
-    "repeat": "<forwhile>",
-    "func": "<def>",
-    "verd": "<mkboolian>",
-    "se": "<if>",
-    "alse": "<elif>",
-    "al": "<else>",
-    "en": "<in>",
-    "bro": "<defcall>",
-    "ritorno": "<return>",
-    "ilg": "<mknumber>",
-    "rango": "<range_num>",
-    "caden": "<mkstr>",
-}
+# this is the last verstion of this program that you need to give the regex manually
+# list__ = [
+#     "repeat",
+#     "func",
+#     "verd",
+#     "se",
+#     "alse",
+#     "al",
+#     "en",
+#     "bro",
+#     "ritorno",
+#     "ilg",
+#     "rango",
+#     "caden",
+# ]
+# dict_tk = {
+#     "repeat": "<forwhile>",
+#     "func": "<def>",
+#     "verd": "<mkboolian>",
+#     "se": "<if>",
+#     "alse": "<elif>",
+#     "al": "<else>",
+#     "en": "<in>",
+#     "bro": "<defcall>",
+#     "ritorno": "<return>",
+#     "ilg": "<mknumber>",
+#     "rango": "<range_num>",
+#     "caden": "<mkstr>",
+# }
 dict_dtrans = {}
 
 # Process each pattern to create DFA transition tables
