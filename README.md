@@ -132,6 +132,17 @@ Key functions:
 - **Output:** Pure Python code (no external dependencies)
 
 ---
+## ⚠️ Known Limitations
+
+This was a university learning project, and the current implementation has known correctness limitations. It should not be considered production-ready.
+
+- Regex-to-DFA conversion is not reliable for every expression, particularly some alternation and grouping cases; regex grouping and `followpos` handling need correction.
+- Generated recognizers have end-of-input and newline-handling limitations.
+- Regex patterns should be separated from the Python function names used in generated code.
+- Escaping and malformed-regex validation need improvement.
+- Generated output should be written more safely so failures cannot leave partial files.
+
+---
 ## 🔗 Related Work
 
 This project was created for my Compiler Design course to automate regex-based lexical analysis. You can find the related project [here](https://github.com/PashaShahbazi/pasha_lexer).
